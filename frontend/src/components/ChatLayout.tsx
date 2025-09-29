@@ -6,6 +6,7 @@ import { ConversationList } from "./ConversationList";
 import { ChatArea } from "./ChatArea";
 import { NewChatDialog } from "./NewChatDialog";
 import { ThemeToggle } from "./ThemeToggle";
+import { UserProfile } from "./UserProfile";
 
 export function ChatLayout() {
   const [selectedChat, setSelectedChat] = useState<string | null>(null);
@@ -25,6 +26,7 @@ export function ChatLayout() {
               </h1>
             </div>
             <div className="flex items-center gap-2">
+              <UserProfile />
               <ThemeToggle />
               <Button
                 variant="ghost"
@@ -33,9 +35,6 @@ export function ChatLayout() {
                 className="hover:bg-primary/10"
               >
                 <Plus className="h-4 w-4" />
-              </Button>
-              <Button variant="ghost" size="sm" className="hover:bg-primary/10">
-                <MoreVertical className="h-4 w-4" />
               </Button>
             </div>
           </div>
@@ -71,6 +70,7 @@ export function ChatLayout() {
                 </h1>
               </div>
               <div className="flex items-center gap-2">
+                <UserProfile />
                 <ThemeToggle />
                 <Button
                   variant="ghost"
