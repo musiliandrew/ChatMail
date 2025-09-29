@@ -91,10 +91,10 @@ export function UserProfile() {
             </Avatar>
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="end" className="w-56">
+        <DropdownMenuContent align="end" className="w-56 bg-background border-border">
           <DropdownMenuLabel className="font-normal">
             <div className="flex flex-col space-y-1">
-              <p className="text-sm font-medium leading-none">
+              <p className="text-sm font-medium leading-none text-foreground">
                 {user.display_name || "No name set"}
               </p>
               <p className="text-xs leading-none text-muted-foreground">
@@ -102,13 +102,19 @@ export function UserProfile() {
               </p>
             </div>
           </DropdownMenuLabel>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem onClick={() => setShowEditProfile(true)}>
+          <DropdownMenuSeparator className="bg-border" />
+          <DropdownMenuItem 
+            onClick={() => setShowEditProfile(true)}
+            className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+          >
             <Edit3 className="mr-2 h-4 w-4" />
             <span>Edit Profile</span>
           </DropdownMenuItem>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem onClick={handleLogout} className="text-red-600">
+          <DropdownMenuSeparator className="bg-border" />
+          <DropdownMenuItem 
+            onClick={handleLogout} 
+            className="text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950 focus:bg-red-50 dark:focus:bg-red-950"
+          >
             <LogOut className="mr-2 h-4 w-4" />
             <span>Sign out</span>
           </DropdownMenuItem>
@@ -117,56 +123,56 @@ export function UserProfile() {
 
       {/* Edit Profile Dialog */}
       <Dialog open={showEditProfile} onOpenChange={setShowEditProfile}>
-        <DialogContent className="sm:max-w-md">
+        <DialogContent className="w-[90vw] max-w-sm sm:max-w-md mx-auto">
           <DialogHeader>
-            <DialogTitle className="flex items-center gap-2">
-              <Edit3 className="h-5 w-5" />
+            <DialogTitle className="flex items-center gap-2 text-base sm:text-lg">
+              <Edit3 className="h-4 w-4 sm:h-5 sm:w-5" />
               Edit Profile
             </DialogTitle>
           </DialogHeader>
           
-          <div className="space-y-6 py-4">
+          <div className="space-y-4 sm:space-y-6 py-2 sm:py-4">
             {/* Avatar Preview */}
-            <div className="flex flex-col items-center space-y-3">
-              <Avatar className="w-20 h-20">
-                <AvatarFallback className="bg-gradient-to-br from-gmail-red to-gmail-blue text-white text-xl font-semibold">
+            <div className="flex flex-col items-center space-y-2 sm:space-y-3">
+              <Avatar className="w-16 h-16 sm:w-20 sm:h-20">
+                <AvatarFallback className="bg-gradient-to-br from-gmail-red to-gmail-blue text-white text-lg sm:text-xl font-semibold">
                   {getInitials(displayName) || "?"}
                 </AvatarFallback>
               </Avatar>
-              <p className="text-xs text-muted-foreground text-center">
+              <p className="text-xs text-muted-foreground text-center px-2">
                 Avatar generated from your initials
               </p>
             </div>
 
             {/* Display Name */}
             <div className="space-y-2">
-              <Label htmlFor="display-name">Display Name</Label>
+              <Label htmlFor="display-name" className="text-sm">Display Name</Label>
               <Input
                 id="display-name"
                 value={displayName}
                 onChange={(e) => setDisplayName(e.target.value)}
                 placeholder="Enter your display name"
-                className="text-center"
+                className="text-center h-11 sm:h-10"
               />
             </div>
 
             {/* Email (read-only) */}
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email" className="text-sm">Email</Label>
               <Input
                 id="email"
                 value={user.email}
                 disabled
-                className="text-center bg-muted"
+                className="text-center bg-muted h-11 sm:h-10"
               />
             </div>
 
             {/* Actions */}
-            <div className="flex gap-2">
+            <div className="flex flex-col sm:flex-row gap-2">
               <Button
                 variant="outline"
                 onClick={() => setShowEditProfile(false)}
-                className="flex-1"
+                className="flex-1 h-11 sm:h-10"
                 disabled={loading}
               >
                 Cancel
@@ -174,7 +180,7 @@ export function UserProfile() {
               <Button
                 onClick={handleUpdateProfile}
                 disabled={!displayName.trim() || loading}
-                className="flex-1 bg-gradient-to-r from-gmail-red to-gmail-blue hover:opacity-90"
+                className="flex-1 h-11 sm:h-10 bg-gradient-to-r from-gmail-red to-gmail-blue hover:opacity-90"
               >
                 {loading ? "Saving..." : "Save Changes"}
               </Button>
