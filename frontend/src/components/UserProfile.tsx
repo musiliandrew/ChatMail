@@ -105,7 +105,7 @@ export function UserProfile() {
           <DropdownMenuSeparator className="bg-border" />
           <DropdownMenuItem 
             onClick={() => setShowEditProfile(true)}
-            className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+            className="text-foreground hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground cursor-pointer"
           >
             <Edit3 className="mr-2 h-4 w-4" />
             <span>Edit Profile</span>
